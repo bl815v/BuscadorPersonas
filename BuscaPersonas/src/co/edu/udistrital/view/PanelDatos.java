@@ -23,7 +23,7 @@ public class PanelDatos extends JPanel{
 	
 	public PanelDatos() {
 		setLayout(new GridLayout(1, 4));
-		setBackground(new Color(199, 145, 141));
+		setBackground(new Color(151, 252, 161));
 		setBorder(new TitledBorder("Modulo de datos "));
 		setPreferredSize(new Dimension(100, 50));
 		inicializarComponentes();

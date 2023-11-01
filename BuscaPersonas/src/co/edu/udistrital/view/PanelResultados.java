@@ -23,7 +23,7 @@ public class PanelResultados extends JPanel{
 	
 	public PanelResultados() {
 		setLayout(new GridLayout(8,2));
-		setBackground(new Color(204, 126, 126));
+		setBackground(new Color(151, 252, 161));
 		setBorder(new TitledBorder("Modulo de informacion"));
 		setPreferredSize(new Dimension(300, 300));
 		

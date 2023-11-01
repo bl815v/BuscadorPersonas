@@ -15,7 +15,7 @@ public class VentanaPrincipal extends JFrame{
 		setTitle("Buscador de personas");
 		setSize(800,500);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		getContentPane().setBackground(new Color(89, 46, 46));
+		getContentPane().setBackground(new Color(163, 255, 172));
 		getContentPane().setLayout(new BorderLayout(10,10));
 		
 		inicializarComponentes();

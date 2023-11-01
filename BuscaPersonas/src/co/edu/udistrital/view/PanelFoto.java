@@ -17,7 +17,7 @@ public class PanelFoto extends JPanel{
 	
 	public PanelFoto() {
 		setLayout(new FlowLayout());
-		setBackground(new Color(121, 163, 162));
+		setBackground(new Color(173, 255, 181));
 		setBorder(new TitledBorder("Foto de la persona: "));
 		setPreferredSize(new Dimension(300, 300));
 		
