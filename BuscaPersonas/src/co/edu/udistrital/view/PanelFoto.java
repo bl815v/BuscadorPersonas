@@ -17,9 +17,8 @@ public class PanelFoto extends JPanel{
 	
 	public PanelFoto() {
 		setLayout(new FlowLayout());
-		setBackground(new Color(173, 255, 181));
+		setBackground(new Color(128, 128, 128));
 		setBorder(new TitledBorder("Foto de la persona: "));
-		setPreferredSize(new Dimension(300, 300));
 		
 		inicializarComponentes();
 		
@@ -37,8 +36,8 @@ public class PanelFoto extends JPanel{
 		if(elemento.equals(""))
 			etiqueta.setIcon(null);
 		else {
-			ImageIcon Fotografia = new ImageIcon(getClass().getResource("/fotos/"+elemento+".jpg"));
-			ImageIcon FotoAjustada = new ImageIcon(Fotografia.getImage().getScaledInstance(this.getWidth()-30, this.getHeight()-30, Image.SCALE_DEFAULT));
+			ImageIcon Fotografia = new ImageIcon(getClass().getResource("/co/edu/udistrital/fotos/"+elemento+".jpg"));
+			ImageIcon FotoAjustada = new ImageIcon(Fotografia.getImage().getScaledInstance(this.getWidth()-30, this.getHeight()-30, Image.SCALE_SMOOTH));
 			etiqueta.setIcon(FotoAjustada);
 		}
 	}

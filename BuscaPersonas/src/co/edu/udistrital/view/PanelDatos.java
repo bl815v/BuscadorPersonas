@@ -23,7 +23,7 @@ public class PanelDatos extends JPanel{
 	
 	public PanelDatos() {
 		setLayout(new GridLayout(1, 4));
-		setBackground(new Color(151, 252, 161));
+		setBackground(new Color(128, 128, 128));
 		setBorder(new TitledBorder("Modulo de datos "));
 		setPreferredSize(new Dimension(100, 50));
 		inicializarComponentes();
@@ -35,6 +35,7 @@ public class PanelDatos extends JPanel{
 		add(egenero);
 		
 		lista_genero = new JComboBox<String>();
+		lista_genero.addItem("Buscar...");
 		lista_genero.addItem("Femenino");
 		lista_genero.addItem("Masculino");
 		lista_genero.addItem("Otro");
@@ -45,6 +46,7 @@ public class PanelDatos extends JPanel{
 		add(enombre);
 		
 		lista_nombres = new JComboBox<String>();
+		lista_nombres.addItem(" ");
 		lista_nombres.setActionCommand("LISTA2");
 		add(lista_nombres);
 		

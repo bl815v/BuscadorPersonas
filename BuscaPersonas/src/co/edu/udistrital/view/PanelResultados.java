@@ -12,20 +12,16 @@ import javax.swing.border.TitledBorder;
 public class PanelResultados extends JPanel{
 
 	private JLabel eblanco;
-	private JLabel enombre1;
-	private JLabel enombre2;
-	private JLabel eciudad1;
-	private JLabel eciudad2;
-	private JLabel etel1;
-	private JLabel etel2;
-	private JLabel eemail1;
-	private JLabel eemail2;
+	private JLabel enombre1, enombre2;
+	private JLabel eciudad1, eciudad2;
+	private JLabel etel1, etel2;
+	private JLabel email1, email2;
 	
 	public PanelResultados() {
-		setLayout(new GridLayout(8,2));
-		setBackground(new Color(151, 252, 161));
+		setLayout(new GridLayout(8,2, -200, -100)); //  (filas, columnas, ancho, largo)
+		setBackground(new Color(128, 128, 128));
 		setBorder(new TitledBorder("Modulo de informacion"));
-		setPreferredSize(new Dimension(300, 300));
+		setPreferredSize(new Dimension(400, 300));
 		
 		inicializarComponentes();
 		
@@ -44,27 +40,23 @@ public class PanelResultados extends JPanel{
 		
 		enombre1 = new JLabel("Nombre: ");
 		add(enombre1);
-		
 		enombre2 = new JLabel();
 		add(enombre2);
 		
 		eciudad1 = new JLabel("Ciudad: ");
 		add(eciudad1);
-		
 		eciudad2 = new JLabel();
 		add(eciudad2);
 		
 		etel1 = new JLabel("Telefono: ");
 		add(etel1);
-		
 		etel2 = new JLabel();
 		add(etel2);
 		
-		eemail1 = new JLabel("Email: ");
-		add(eemail1);
-		
-		eemail2 = new JLabel();
-		add(eemail2);
+		email1 = new JLabel("Email: ");
+		add(email1);
+		email2 = new JLabel();
+		add(email2);
 		
 		eblanco = new JLabel();
 		add(eblanco);
@@ -75,8 +67,7 @@ public class PanelResultados extends JPanel{
 		eblanco = new JLabel();
 		add(eblanco);
 	}
-	
-	
+
 
 	public JLabel getEblanco() {
 		return eblanco;
@@ -134,20 +125,20 @@ public class PanelResultados extends JPanel{
 		this.etel2 = etel2;
 	}
 
-	public JLabel getEemail1() {
-		return eemail1;
+	public JLabel getEmail1() {
+		return email1;
 	}
 
-	public void setEemail1(JLabel eemail1) {
-		this.eemail1 = eemail1;
+	public void setEmail1(JLabel eemail1) {
+		this.email1 = eemail1;
 	}
 
-	public JLabel getEemail2() {
-		return eemail2;
+	public JLabel getEmail2() {
+		return email2;
 	}
 
-	public void setEemail2(JLabel eemail2) {
-		this.eemail2 = eemail2;
+	public void setEmail2(JLabel eemail2) {
+		this.email2 = eemail2;
 	}
 
 }
