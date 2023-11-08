@@ -25,6 +25,8 @@ public class Controller implements ActionListener{
 	
 	public void asignarOyentes() {
 		vista.getPd().getLista_genero().addActionListener(this);
+		vista.getPr().getBagregar().addActionListener(this);
+		vista.getPr().getBeliminar().addActionListener(this);
 		
 	}
 
@@ -55,6 +57,10 @@ public class Controller implements ActionListener{
 				}
 			}
 			
+			vista.getPr().getEnombre1().setVisible(false);
+			vista.getPr().getEciudad1().setVisible(false);
+			vista.getPr().getEtel1().setVisible(false);
+			vista.getPr().getEmail1().setVisible(false);
 			vista.getPr().getEnombre2().setText("");
 			vista.getPr().getEciudad2().setText("");
 			vista.getPr().getEtel2().setText("");
@@ -64,22 +70,48 @@ public class Controller implements ActionListener{
 			vista.getPd().getLista_nombres().addActionListener(this);
 		}
 		else if (comando.equals("LISTA2")){
+			vista.getPd().getLista_nombres().removeItem(" ");
 			String buscarNombre = (String) vista.getPd().getLista_nombres().getSelectedItem();
 			
-			vista.getPd().getLista_nombres().removeItem(" ");
 			if(!buscarNombre.equals(" ")) {
+				// funcion buscar
 				Persona encontrada = null;
 				for(Persona x : datos.getDirectorio()) {
 					if(x.getNombre().equals(buscarNombre)) {
 						encontrada = x;
 					}
 				}
+				//
+				vista.getPr().getEnombre1().setVisible(true);
+				vista.getPr().getEciudad1().setVisible(true);
+				vista.getPr().getEtel1().setVisible(true);
+				vista.getPr().getEmail1().setVisible(true);
 				vista.getPr().getEnombre2().setText(encontrada.getNombre());
 				vista.getPr().getEciudad2().setText(encontrada.getCiudad());
 				vista.getPr().getEtel2().setText(encontrada.getTelefono());
 				vista.getPr().getEmail2().setText(encontrada.getEmail());
 				vista.getPf().CambiarImagen(encontrada.getArchivoFoto());
+				vista.getPr().getBeliminar().setVisible(true);
 			}
+		}
+		else if (comando.equals("AGREGAR")) {
+			
+			
+		}
+		
+		else if (comando.equals("ELIMINAR")) {
+			JOptionPane.showMessageDialog(null, "Esta seguro que desea eliminar a esta persona del programa?");
+			vista.getPr().getEnombre1().setVisible(false);
+			vista.getPr().getEciudad1().setVisible(false);
+			vista.getPr().getEtel1().setVisible(false);
+			vista.getPr().getEmail1().setVisible(false);
+			vista.getPr().getEnombre2().setText("");
+			vista.getPr().getEciudad2().setText("");
+			vista.getPr().getEtel2().setText("");
+			vista.getPr().getEmail2().setText("");
+			vista.getPf().CambiarImagen("");
+			// vista.getPd().getLista_nombres().removeItem( // el item en el que esta);
+			// crear funcion de busqueda en publico
 		}
 	}
 	

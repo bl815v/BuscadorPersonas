@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Directorio {
 	private ArrayList<Persona> directorio;
+	private int indicePersonaSeleccionada = -1;
 	
 	public Directorio() {
 		directorio = new ArrayList<Persona>();
@@ -43,5 +44,14 @@ public class Directorio {
 	public void setDirectorio(ArrayList<Persona> directorio) {
 		this.directorio = directorio;
 	}
+
+	public int getIndicePersonaSeleccionada() {
+		return indicePersonaSeleccionada;
+	}
+
+	public void setIndicePersonaSeleccionada(int indicePersonaSeleccionada) {
+		this.indicePersonaSeleccionada = indicePersonaSeleccionada;
+	}
+	
 	
 }
