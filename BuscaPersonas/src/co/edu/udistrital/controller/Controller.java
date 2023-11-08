@@ -14,7 +14,7 @@ import co.edu.udistrital.view.VentanaPrincipal;
 public class Controller implements ActionListener{
 
 	private VentanaPrincipal vista;
-	private ControlAgregar vAgregar;
+	
 	private Directorio datos;
 	private String buscarNombre;
 	
@@ -78,6 +78,7 @@ public class Controller implements ActionListener{
 					vista.getPr().getEtel2().setText(buscarPersona().getTelefono());
 					vista.getPr().getEmail2().setText(buscarPersona().getEmail());
 					try {
+						vista.getPf().getEtiqueta().setText("");
 						vista.getPf().CambiarImagen(buscarPersona().getArchivoFoto());
 					}catch (NullPointerException y) {
 						vista.getPf().getEtiqueta().setIcon(null);
@@ -91,6 +92,7 @@ public class Controller implements ActionListener{
 			}
 		}
 		else if (comando.equals("AGREGAR")) {
+			ControlAgregar vAgregar;
 			vAgregar = new ControlAgregar(datos);
 		}
 		
