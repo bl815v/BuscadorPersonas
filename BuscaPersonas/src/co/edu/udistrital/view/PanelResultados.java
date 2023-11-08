@@ -26,7 +26,6 @@ public class PanelResultados extends JPanel{
 		setPreferredSize(new Dimension(400, 300));
 		
 		inicializarComponentes();
-		
 		setVisible(true);
 	}
 	

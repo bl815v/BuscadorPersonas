@@ -19,7 +19,6 @@ public class VentanaPrincipal extends JFrame{
 		getContentPane().setLayout(new BorderLayout(10,10));
 		
 		inicializarComponentes();
-		
 		setResizable(true);
 		setLocationRelativeTo(null);
 		setVisible(true);
@@ -60,6 +59,5 @@ public class VentanaPrincipal extends JFrame{
 	public void setPf(PanelFoto pf) {
 		this.pf = pf;
 	}
-
 	
 }

@@ -1,6 +1,6 @@
 package co.edu.udistrital.view;
 
-public class Tema {
+public final class Tema {
 	
 	public static int[] colorFondo(String genero) {
 	    int[] color = new int[3];
@@ -75,4 +75,5 @@ public class Tema {
 
 	    return color;
 	}	
+	
 }

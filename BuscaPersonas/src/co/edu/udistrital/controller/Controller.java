@@ -14,8 +14,9 @@ import co.edu.udistrital.view.VentanaPrincipal;
 public class Controller implements ActionListener{
 
 	private VentanaPrincipal vista;
+	private ControlAgregar vAgregar;
 	private Directorio datos;
-	
+	private String buscarNombre;
 	
 	public Controller() {
 		vista = new VentanaPrincipal();
@@ -25,18 +26,18 @@ public class Controller implements ActionListener{
 	
 	public void asignarOyentes() {
 		vista.getPd().getLista_genero().addActionListener(this);
-		vista.getPr().getBagregar().addActionListener(this);
 		vista.getPr().getBeliminar().addActionListener(this);
-		
+		vista.getPr().getBagregar().addActionListener(this);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String comando = e.getActionCommand();
 		if(comando.equals("LISTA1")) {
+			vista.getPd().getLista_genero().removeItem("Buscar...");
 			vista.getPd().getLista_nombres().removeActionListener(this);
 			vista.getPd().getLista_nombres().removeAllItems();
-			vista.getPd().getLista_genero().removeItem("Buscar...");
+			vista.getPr().getBeliminar().setVisible(false);
 		
 			String buscarGenero = (String) vista.getPd().getLista_genero().getSelectedItem();
 			vista.getPd().getLista_nombres().addItem(" ");
@@ -57,68 +58,77 @@ public class Controller implements ActionListener{
 				}
 			}
 			
-			vista.getPr().getEnombre1().setVisible(false);
-			vista.getPr().getEciudad1().setVisible(false);
-			vista.getPr().getEtel1().setVisible(false);
-			vista.getPr().getEmail1().setVisible(false);
-			vista.getPr().getEnombre2().setText("");
-			vista.getPr().getEciudad2().setText("");
-			vista.getPr().getEtel2().setText("");
-			vista.getPr().getEmail2().setText("");
-			vista.getPf().CambiarImagen("");
+			campoVacio();
 			
 			vista.getPd().getLista_nombres().addActionListener(this);
 		}
 		else if (comando.equals("LISTA2")){
 			vista.getPd().getLista_nombres().removeItem(" ");
-			String buscarNombre = (String) vista.getPd().getLista_nombres().getSelectedItem();
-			
-			if(!buscarNombre.equals(" ")) {
-				// funcion buscar
-				Persona encontrada = null;
-				for(Persona x : datos.getDirectorio()) {
-					if(x.getNombre().equals(buscarNombre)) {
-						encontrada = x;
+			buscarNombre = (String) vista.getPd().getLista_nombres().getSelectedItem();
+				
+			try {
+				if(!buscarNombre.equals(" ")) {
+					vista.getPr().getEnombre1().setVisible(true);
+					vista.getPr().getEciudad1().setVisible(true);
+					vista.getPr().getEtel1().setVisible(true);
+					vista.getPr().getEmail1().setVisible(true);
+					vista.getPr().getBeliminar().setVisible(true);
+					vista.getPr().getEnombre2().setText(buscarPersona().getNombre());
+					vista.getPr().getEciudad2().setText(buscarPersona().getCiudad());
+					vista.getPr().getEtel2().setText(buscarPersona().getTelefono());
+					vista.getPr().getEmail2().setText(buscarPersona().getEmail());
+					try {
+						vista.getPf().CambiarImagen(buscarPersona().getArchivoFoto());
+					}catch (NullPointerException y) {
+						vista.getPf().getEtiqueta().setIcon(null);
+						vista.getPf().getEtiqueta().setText("No se encontro la foto, revise si el arhivo " +buscarPersona().getArchivoFoto()+ ".jpg esta en la carpeta");;
 					}
 				}
-				//
-				vista.getPr().getEnombre1().setVisible(true);
-				vista.getPr().getEciudad1().setVisible(true);
-				vista.getPr().getEtel1().setVisible(true);
-				vista.getPr().getEmail1().setVisible(true);
-				vista.getPr().getEnombre2().setText(encontrada.getNombre());
-				vista.getPr().getEciudad2().setText(encontrada.getCiudad());
-				vista.getPr().getEtel2().setText(encontrada.getTelefono());
-				vista.getPr().getEmail2().setText(encontrada.getEmail());
-				vista.getPf().CambiarImagen(encontrada.getArchivoFoto());
-				vista.getPr().getBeliminar().setVisible(true);
+			}
+			catch (NullPointerException w){
+				campoVacio();
+				vista.getPr().getBeliminar().setVisible(false);	
 			}
 		}
 		else if (comando.equals("AGREGAR")) {
-			
-			
+			vAgregar = new ControlAgregar(datos);
 		}
 		
 		else if (comando.equals("ELIMINAR")) {
-			JOptionPane.showMessageDialog(null, "Esta seguro que desea eliminar a esta persona del programa?");
-			vista.getPr().getEnombre1().setVisible(false);
-			vista.getPr().getEciudad1().setVisible(false);
-			vista.getPr().getEtel1().setVisible(false);
-			vista.getPr().getEmail1().setVisible(false);
-			vista.getPr().getEnombre2().setText("");
-			vista.getPr().getEciudad2().setText("");
-			vista.getPr().getEtel2().setText("");
-			vista.getPr().getEmail2().setText("");
-			vista.getPf().CambiarImagen("");
-			// vista.getPd().getLista_nombres().removeItem( // el item en el que esta);
-			// crear funcion de busqueda en publico
+			Object[] opciones = {"Si, estoy seguro", "No, cancelar"}; 
+			int opcion = JOptionPane.showOptionDialog(null, "Esta seguro que desea eliminar a esta persona del programa?", 
+					"Eliminar persona", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, opciones, opciones[1]); 
+			
+			if(opcion == JOptionPane.YES_OPTION) {
+			campoVacio();
+			String temp = buscarPersona().getNombre();
+			datos.getDirectorio().remove(buscarPersona());
+			vista.getPd().getLista_nombres().removeItem(temp);
+			}
 		}
+	}
+	
+	private void campoVacio() {
+		vista.getPr().getEnombre1().setVisible(false);
+		vista.getPr().getEciudad1().setVisible(false);
+		vista.getPr().getEtel1().setVisible(false);
+		vista.getPr().getEmail1().setVisible(false);
+		vista.getPr().getEnombre2().setText("");
+		vista.getPr().getEciudad2().setText("");
+		vista.getPr().getEtel2().setText("");
+		vista.getPr().getEmail2().setText("");
+		vista.getPf().CambiarImagen("");
+	}
+	
+	private Persona buscarPersona() {
+		Persona encontrada = null;
+		for(Persona x : datos.getDirectorio()) {
+			if(x.getNombre().equals(buscarNombre)) {
+				encontrada = x;
+			}
+		}
+		return encontrada;
 	}
 	
 	
 }
-
-
-
-
-

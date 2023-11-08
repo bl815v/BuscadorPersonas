@@ -4,14 +4,13 @@ import java.util.ArrayList;
 
 public class Directorio {
 	private ArrayList<Persona> directorio;
-	private int indicePersonaSeleccionada = -1;
 	
 	public Directorio() {
 		directorio = new ArrayList<Persona>();
 		cargarDatosIniciales();
 	}
 	
-	public void cargarDatosIniciales() {
+	private void cargarDatosIniciales() {
 		Persona x;
 		x = new Persona("Nicki Nicole", "Femenino","Buenos Aires", "3223715340", "nickinicole@gmail.com", "m1");
 		directorio.add(x);
@@ -25,10 +24,10 @@ public class Directorio {
 		x = new Persona("Juan Herran", "Masculino", "Bogota", "3183715230", "ju4npoloj@gmail.com", "h1");
 		directorio.add(x);
 		
-		x = new Persona("Juan Bedoya", "Masculino", "Bogota", "3054728310", "bedoyalauterojuanesteban@gmail.com", "h2");
+		x = new Persona("Juan Bedoya", "Masculino", "Bogota", "3054728310", "bedoyalautero@gmail.com", "h2");
 		directorio.add(x);
 		
-		x = new Persona("Gerardo Tole", "Masculino", "Bogota", "3143712356", "gtole@udistrital.edu.co", "h3");
+		x = new Persona("David Felipe Castro", "Masculino", "Bogota", "3143712356", "dfco@unal.edu.co", "h3");
 		directorio.add(x);
 		
 	}
@@ -36,6 +35,10 @@ public class Directorio {
 	public int obtenerLongitud() {
 		return directorio.size();
 	}
+	
+    public void agregarPersona(Persona nuevaPersona) {
+        directorio.add(nuevaPersona);
+    }
 
 	public ArrayList<Persona> getDirectorio() {
 		return directorio;
@@ -44,14 +47,5 @@ public class Directorio {
 	public void setDirectorio(ArrayList<Persona> directorio) {
 		this.directorio = directorio;
 	}
-
-	public int getIndicePersonaSeleccionada() {
-		return indicePersonaSeleccionada;
-	}
-
-	public void setIndicePersonaSeleccionada(int indicePersonaSeleccionada) {
-		this.indicePersonaSeleccionada = indicePersonaSeleccionada;
-	}
-	
 	
 }

@@ -2,30 +2,24 @@ package co.edu.udistrital.view;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.GridLayout;
 
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
 public class PanelDatos extends JPanel{
 
-	private JLabel egenero;
-	private JLabel enombre;
-	private JComboBox<String> lista_genero;
-	private JComboBox<String> lista_nombres;
-	
-	
+	private JLabel egenero, enombre;
+	private JComboBox<String> lista_genero, lista_nombres;
 	
 	public PanelDatos() {
 		setLayout(new GridLayout(1, 4));
 		setBackground(new Color(128, 128, 128));
-		setBorder(new TitledBorder("Modulo de datos "));
+		setBorder(new TitledBorder("Modulo de datos"));
 		setPreferredSize(new Dimension(100, 50));
+		
 		inicializarComponentes();
 		setVisible(true);
 	}
@@ -49,7 +43,6 @@ public class PanelDatos extends JPanel{
 		lista_nombres.addItem(" ");
 		lista_nombres.setActionCommand("LISTA2");
 		add(lista_nombres);
-		
 		
 	}
 
@@ -84,6 +77,5 @@ public class PanelDatos extends JPanel{
 	public void setLista_nombres(JComboBox<String> lista_nombres) {
 		this.lista_nombres = lista_nombres;
 	}
-
 
 }
